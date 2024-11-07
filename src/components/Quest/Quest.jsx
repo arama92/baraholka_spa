@@ -4,21 +4,13 @@ import styles from './Quest.module.scss';
 
 import { modalContext } from '../../App';
 
-const Quest = ({ id, name, done }) => {
+const Quest = ({ id, name, done, callAxiosOk }) => {
   const [checked, setChecked] = React.useState(done);
 
   const clickQuest = (e) => {
     e.preventDefault();
     setChecked(!checked);
-
-    const quests = JSON.parse(localStorage.getItem('quest'));
-    for (let i = 0; i < quests.length; i++) {
-      if (quests[i].id === id) {
-        quests[i] = { id, name, done: !checked };
-        break;
-      }
-    }
-    localStorage.setItem('quest', JSON.stringify(quests));
+    callAxiosOk(id, !checked);
   };
 
   const { setVisableModal, coorXY, questId } = React.useContext(modalContext);

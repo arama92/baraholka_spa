@@ -17,30 +17,34 @@ const Main = () => {
   }, []);
 
   React.useEffect(() => {
-    const quest = localStorage.getItem('quest');
-    if (!quest) {
-      axios
-        .get('Quest.json')
-        .then((res) => {
-          setItems(res.data);
-          localStorage.setItem('quest', JSON.stringify(res.data));
-        })
-        .catch((err) => {
-          console.log(err);
-          setItems([]);
-        });
-    } else {
-      setItems(JSON.parse(quest));
-    }
+    axios
+      .get('https://670ce84d7e5a228ec1d1dad4.mockapi.io/todo')
+      .then((res) => {
+        setItems(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        setItems([]);
+      });
   }, []);
 
   const addQuest = (newQuest) => {
     setItems([...items, newQuest]);
-    localStorage.setItem('quest', JSON.stringify([...items, newQuest]));
+    axios.post(`https://670ce84d7e5a228ec1d1dad4.mockapi.io/todo`, {
+      id: newQuest.id,
+      name: newQuest.name,
+      done: newQuest.done,
+    });
+  };
+  const callAxiosOk = (id, done) => {
+    axios.put(`https://670ce84d7e5a228ec1d1dad4.mockapi.io/todo/${id}`, {
+      id: id,
+      done: done,
+    });
   };
 
   const itemQuests = items.map((item) => {
-    return <Quest key={item.id} {...item} />;
+    return <Quest key={item.id} {...item} callAxiosOk={callAxiosOk} />;
   });
 
   const { visableModal, setVisableModal, coorXY, questId } = React.useContext(modalContext);
@@ -48,10 +52,7 @@ const Main = () => {
   const clickDelete = () => {
     setItems(items.filter((item) => item.id !== questId.current));
     setVisableModal(false);
-    localStorage.setItem(
-      'quest',
-      JSON.stringify(items.filter((item) => item.id !== questId.current)),
-    );
+    axios.delete(`https://670ce84d7e5a228ec1d1dad4.mockapi.io/todo/${questId.current}`);
   };
 
   return (
