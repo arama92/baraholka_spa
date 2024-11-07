@@ -1,0 +1,19 @@
+@import '../../styles/libs/normalize';
+.root{
+    @include noselect;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #F4F4F4;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    span{
+        margin-left: 5px;
+    }
+  
+}
+.quest-done{
+    opacity: 0.2;
+    text-decoration: line-through;
+    border-bottom: 2px solid #c0bdbd;
+}

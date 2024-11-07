@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import './styles/App.scss';
+import Main from './pages/Main';
+
+export const modalContext = React.createContext('');
 
 function App() {
+  const [visableModal, setVisableModal] = React.useState(false);
+  const coorXY = React.useRef({ x: 0, y: 0 });
+  const questId = React.useRef(-1);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <modalContext.Provider value={{ visableModal, setVisableModal, coorXY, questId }}>
+        <Main />
+      </modalContext.Provider>
     </div>
   );
 }
