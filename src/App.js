@@ -1,6 +1,8 @@
 import React from 'react';
 import './styles/App.scss';
 import Main from './pages/Main';
+import Shop from './pages/Shop';
+import { Routes, Route, Link } from 'react-router-dom';
 
 export const modalContext = React.createContext('');
 
@@ -11,9 +13,21 @@ function App() {
 
   return (
     <div className='App'>
-      <modalContext.Provider value={{ visableModal, setVisableModal, coorXY, questId }}>
-        <Main />
-      </modalContext.Provider>
+      <Link to='/' className='linkHeader'>
+        todos
+      </Link>
+      <Link to='/shop' className='linkHeader'>
+        shop
+      </Link>
+      <div className='content'>
+        <modalContext.Provider value={{ visableModal, setVisableModal, coorXY, questId }}>
+          <Routes>
+            <Route path='/' element={<Main />} />
+            <Route path='/shop' element={<Shop />} />
+            <Route path='*' element={<h1>404</h1>} />
+          </Routes>
+        </modalContext.Provider>
+      </div>
     </div>
   );
 }
