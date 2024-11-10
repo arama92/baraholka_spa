@@ -1,5 +1,7 @@
 import axios from 'axios';
 import React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { setNavigateLocalStorage } from '../utils/navigateLocalStorage';
 
 const Shop = () => {
   const go = () => {
@@ -14,7 +16,7 @@ const Shop = () => {
         console.log(err);
       });
   };
-  go();
+
   return (
     <div className='shop'>
       <div className='shopHeader'>
