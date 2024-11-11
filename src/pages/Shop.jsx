@@ -1,108 +1,36 @@
 import axios from 'axios';
 import React from 'react';
+import Currency from '../components/Currency';
 
 const Shop = () => {
-  const go = () => {
+  const [valuteItem, setValuteItem] = React.useState([]);
+
+  React.useEffect(() => {
     axios
       .get('https://www.cbr-xml-daily.ru/daily_json.js')
       .then((res) => {
-        console.log(res.data);
+        setValuteItem(res.data.Valute);
+        // console.log(Object.keys(res.data.Valute));
+        // console.log(Object.values(res.data.Valute));
       })
       .catch((err) => {
         console.log(err);
       });
-  };
-  go();
+  }, []);
+
+  const Currencys = Object.values(valuteItem).map((item) => (
+    <Currency key={item.ID} name={item.Name} previous={item.Previous} current={item.Value} />
+  ));
+
   return (
     <div className='shop'>
       <div className='shopHeader'>
-        <input type='text' placeholder='Поиск' className='shopHeader__shopFind' />
+        {/* <input type='text' placeholder='Поиск' className='shopHeader__shopFind' /> */}
         <button className='shopHeader__shopCurrency'>
-          Следим за <span>0</span>
+          Отслеживаемые <span>0</span>
         </button>
       </div>
-      <div className='shopList'>
-        <div className='shopItem'>
-          <div className='shopItem__leftColoumn'>
-            <span className='shopItem__name'>NAME</span>
-            <hr />
-            <span className='shopItem__previous'>Пред</span>
-            <hr />
-            <span className='shopItem__current'>Текущее</span>
-          </div>
-          <button className='shopItem__buttonAdd'>+</button>
-        </div>
-        <div className='shopItem'>
-          <div className='shopItem__leftColoumn'>
-            <span className='shopItem__name'>NAME</span>
-            <hr />
-            <span className='shopItem__previous'>Пред</span>
-            <hr />
-            <span className='shopItem__current'>Текущее</span>
-          </div>
-          <button className='shopItem__buttonAdd'>+</button>
-        </div>
-        <div className='shopItem'>
-          <div className='shopItem__leftColoumn'>
-            <span className='shopItem__name'>NAME</span>
-            <hr />
-            <span className='shopItem__previous'>Пред</span>
-            <hr />
-            <span className='shopItem__current'>Текущее</span>
-          </div>
-          <button className='shopItem__buttonAdd'>+</button>
-        </div>
-        <div className='shopItem'>
-          <div className='shopItem__leftColoumn'>
-            <span className='shopItem__name'>NAME</span>
-            <hr />
-            <span className='shopItem__previous'>Пред</span>
-            <hr />
-            <span className='shopItem__current'>Текущее</span>
-          </div>
-          <button className='shopItem__buttonAdd'>+</button>
-        </div>
-        <div className='shopItem'>
-          <div className='shopItem__leftColoumn'>
-            <span className='shopItem__name'>NAME</span>
-            <hr />
-            <span className='shopItem__previous'>Пред</span>
-            <hr />
-            <span className='shopItem__current'>Текущее</span>
-          </div>
-          <button className='shopItem__buttonAdd'>+</button>
-        </div>
-        <div className='shopItem'>
-          <div className='shopItem__leftColoumn'>
-            <span className='shopItem__name'>NAME</span>
-            <hr />
-            <span className='shopItem__previous'>Пред</span>
-            <hr />
-            <span className='shopItem__current'>Текущее</span>
-          </div>
-          <button className='shopItem__buttonAdd'>+</button>
-        </div>
-        <div className='shopItem'>
-          <div className='shopItem__leftColoumn'>
-            <span className='shopItem__name'>NAME</span>
-            <hr />
-            <span className='shopItem__previous'>Пред</span>
-            <hr />
-            <span className='shopItem__current'>Текущее</span>
-          </div>
-          <button className='shopItem__buttonAdd'>+</button>
-        </div>
-        <div className='shopItem'>
-          <div className='shopItem__leftColoumn'>
-            <span className='shopItem__name'>NAME</span>
-            <hr />
-            <span className='shopItem__previous'>Пред</span>
-            <hr />
-            <span className='shopItem__current'>Текущее</span>
-          </div>
-          <button className='shopItem__buttonAdd'>+</button>
-        </div>
-      </div>
+      <div className='shopList'>{Currencys}</div>
     </div>
   );
 };

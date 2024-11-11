@@ -5,19 +5,18 @@ import styles from './Quest.module.scss';
 import { modalContext } from '../../pages/Main';
 import { CoorXY, quest } from '../../@types/questTypes';
 
-// type questProps = quest & { callAxiosOk: (id: number, done: boolean) => void };
+type questProps = quest & { callAxiosOk: (id: number, done: boolean) => void };
 
 type context = {
   setVisableModal: (value: boolean) => void;
   coorXY: React.MutableRefObject<CoorXY>;
   questId: React.MutableRefObject<number>;
-  callAxiosOk: (id: number, done: boolean) => void;
 };
 
-const Quest: React.FC<quest> = ({ id, name, done }) => {
+const Quest: React.FC<questProps> = ({ id, name, done, callAxiosOk }) => {
   const [checked, setChecked] = React.useState(done);
 
-  const { setVisableModal, coorXY, questId, callAxiosOk } = React.useContext<context>(modalContext);
+  const { setVisableModal, coorXY, questId } = React.useContext<context>(modalContext);
 
   const clickQuest = (e: React.MouseEvent<HTMLLabelElement>) => {
     e.preventDefault();

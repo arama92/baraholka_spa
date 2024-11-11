@@ -1,12 +1,12 @@
 import React from 'react';
 
 type lisToDoProps = {
-  itemQuests: JSX.Element[];
+  children: JSX.Element[];
 };
 
-const ListToDo: React.FC<lisToDoProps> = ({ itemQuests }) => {
-  if (itemQuests.length) {
-    return <div className='listtodo'>{itemQuests}</div>;
+const ListToDo: React.FC<lisToDoProps> = ({ children }) => {
+  if (children.length) {
+    return <div className='listtodo'>{children}</div>;
   }
   return <div>NICEGO</div>;
 };

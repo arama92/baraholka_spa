@@ -59,7 +59,7 @@ const Main: React.FC = () => {
   };
 
   const itemQuests = items.map((item) => {
-    return <Quest key={item.id} {...item} />;
+    return <Quest key={item.id} {...item} callAxiosOk={callAxiosOk} />;
   });
 
   const clickDelete = () => {
@@ -71,9 +71,7 @@ const Main: React.FC = () => {
 
   return (
     <div className='main'>
-      <modalContext.Provider
-        value={{ visableModal, setVisableModal, coorXY, questId, callAxiosOk }}
-      >
+      <modalContext.Provider value={{ visableModal, setVisableModal, coorXY, questId }}>
         <h1 className='title'>todos</h1>
         <span className='lastLoginTime'>Start: {getDateLocalStorage()}</span>
         <div className='windows'>
@@ -82,7 +80,7 @@ const Main: React.FC = () => {
           ) : (
             <>
               <PostFormQuest addQuest={addQuest} />
-              <ListToDo itemQuests={itemQuests} />
+              <ListToDo>{itemQuests}</ListToDo>
             </>
           )}
         </div>
