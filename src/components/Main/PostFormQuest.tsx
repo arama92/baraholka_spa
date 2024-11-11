@@ -1,6 +1,6 @@
 import React from 'react';
-import MyInput from './UI/Myinput';
-import { quest } from '../@types/questTypes';
+import MyInput from '../UI/Myinput';
+import { quest } from '../../@types/questTypes';
 
 type PostFormQuestProps = {
   addQuest: (newQuest: quest) => void;

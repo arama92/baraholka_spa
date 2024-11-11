@@ -5,6 +5,7 @@ import Shop from './pages/Shop';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { setNavigateLocalStorage } from './utils/navigateLocalStorage';
+import Header from './components/Header';
 
 function App() {
   const navigate = useNavigate();
@@ -19,12 +20,7 @@ function App() {
 
   return (
     <div className='App'>
-      <Link to='/main' className='linkHeader'>
-        todos
-      </Link>
-      <Link to='/shop' className='linkHeader'>
-        shop
-      </Link>
+      <Header />
       <div className='content'>
         <Routes>
           <Route path='/main' element={<Main />} />

@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import Quest from '../components/Quest/Quest';
-import PostFormQuest from '../components/PostFormQuest';
-import ListToDo from '../components/ListToDo';
+import PostFormQuest from '../components/Main/PostFormQuest';
+import ListToDo from '../components/Main/ListToDo';
 import MyModal from '../components/UI/MyModal';
 import MyButton from '../components/MyButton';
 import axios from 'axios';
