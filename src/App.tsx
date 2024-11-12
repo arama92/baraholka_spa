@@ -4,7 +4,7 @@ import Main from './pages/Main';
 import Shop from './pages/Shop';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { setNavigateLocalStorage } from './utils/navigateLocalStorage';
+import { setNavigateLocalStorage } from './utils/setNavigateLocalStorage';
 import Header from './components/Header';
 
 function App() {
@@ -25,6 +25,7 @@ function App() {
         <Routes>
           <Route path='/main' element={<Main />} />
           <Route path='/shop' element={<Shop />} />
+          <Route path='/shop/favorite' />
           <Route path='*' element={<h1>404</h1>} />
         </Routes>
       </div>

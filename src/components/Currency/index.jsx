@@ -1,30 +1,32 @@
 import React from 'react';
 import styles from './Currency.module.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  addItem,
+  removeItem,
+  selectCartCurrencyByName,
+} from '../../redux/slices/cartCurrencySlice';
 
 const Currency = ({ name, previous, current }) => {
+  const dispatch = useDispatch();
+
   const [active, setActive] = React.useState(false);
 
   const clickButton = () => {
+    if (!active) {
+      dispatch(addItem(name));
+    } else {
+      dispatch(removeItem(name));
+    }
     setActive(!active);
-
-    // if (!localStorage.getItem('currency')) {
-    //   localStorage.setItem('currency', name);
-    //   return;
-    // }
-
-    // const _currencys = localStorage.getItem('currency').split(',');
-
-    // if (!active) {
-    //   _currencys.push(name);
-    // } else {
-    //   _currencys.forEach((item, index) => {
-    //     if (item === name) {
-    //       _currencys.splice(index, 1);
-    //     }
-    //   });
-    // }
-    // localStorage.setItem('currency', _currencys.join(','));
   };
+
+  const itemCurrency = useSelector(selectCartCurrencyByName(name));
+  React.useEffect(() => {
+    if (itemCurrency) {
+      setActive(true);
+    }
+  }, []);
 
   return (
     <div className={styles.root + ' ' + (active ? styles['root-active'] : '')}>

@@ -1,3 +1,5 @@
+@import '../../styles/libs/normalize';
+
 .root{
     display: flex;
     justify-content: space-between;
@@ -13,6 +15,7 @@
     }
 
     button{
+        @include noselect;
         font-size: 30px;
         width: 25pt;
         height: 25pt;
@@ -21,6 +24,7 @@
         justify-content: center;
         border: 1px solid rgba(115, 118, 118, 0.5);
         cursor: pointer;
+        outline: none;
 
         &:hover{
             background-color: rgba(25, 117, 145, 0.5);
