@@ -6,10 +6,12 @@ import {
   removeItem,
   selectCartCurrencyByName,
 } from '../../redux/slices/cartCurrencySlice';
+import clsx from 'clsx';
 
 const Currency = ({ name, previous, current }) => {
   const dispatch = useDispatch();
 
+  const favoriteStatus = useSelector((state) => state.currencyFavorite);
   const [active, setActive] = React.useState(false);
 
   const clickButton = () => {
@@ -28,8 +30,14 @@ const Currency = ({ name, previous, current }) => {
     }
   }, []);
 
+  const cStyle = clsx({
+    [styles.root]: true,
+    [styles['root-none']]: favoriteStatus.favorite,
+    [styles['root-active']]: active,
+  });
+
   return (
-    <div className={styles.root + ' ' + (active ? styles['root-active'] : '')}>
+    <div className={cStyle}>
       <div>
         <span>{name}</span>
         <hr />

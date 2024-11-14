@@ -7,8 +7,11 @@
     background-color: rgba(115, 118, 118, 0.2);
 
     .header{
+        top: 0;
+        position: sticky;
         display: flex;
         flex-direction: column;
+        background-color: #a9e4d7;
 
         &__linkHeader{
             border: 1px solid;

@@ -1,12 +1,8 @@
-import axios from 'axios';
 import React from 'react';
-import Currency from '../components/Currency';
-
 import { useSelector, useDispatch } from 'react-redux';
 import { featchCurrencyJs, selectCurrencyJs } from '../redux/slices/CurrencyJsSlice';
-import { getCurrencyLocalStorage } from '../utils/getCurrencyLocalStorage';
 import HeaderShop from '../components/HeaderShop';
-import { selectCartCurrency } from '../redux/slices/cartCurrencySlice';
+import Currency from '../components/Currency';
 
 const Shop = () => {
   const dispatch = useDispatch();
