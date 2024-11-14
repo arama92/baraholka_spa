@@ -9,7 +9,6 @@ const currencyFavoriteSlice = createSlice({
   initialState,
   reducers: {
     setFavorite(state, action) {
-      console.log(action.payload);
       state.favorite = action.payload;
     },
   },

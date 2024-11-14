@@ -9,6 +9,9 @@ const Header: React.FC = () => {
       <Link to='/shop' className='header__linkHeader'>
         Валюты
       </Link>
+      <Link to='/captcha' className='header__linkHeader'>
+        Капча
+      </Link>
     </div>
   );
 };
